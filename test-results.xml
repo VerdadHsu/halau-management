@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.5350" tests="4" failures="0">
+  <testsuite name="Root Suite" timestamp="2021-03-26T09:41:36" tests="0" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Todo API" timestamp="2021-03-26T09:41:36" tests="4" file="/home/manager/Documents/Workspace/lab/halau-management/test/test.server.js" time="0.5350" failures="0">
+    <testcase name="Todo API should list ALL Todos on /todos GET" time="0.1450" classname="should list ALL Todos on /todos GET">
+    </testcase>
+    <testcase name="Todo API should add a todo on /todos POST" time="0.0870" classname="should add a todo on /todos POST">
+    </testcase>
+    <testcase name="Todo API should update the status of a Todo on /todos/&lt;id&gt; PUT" time="0.1530" classname="should update the status of a Todo on /todos/&lt;id&gt; PUT">
+    </testcase>
+    <testcase name="Todo API should delete a todo on /todo/&lt;id&gt; DELETE without Auth Token" time="0.1500" classname="should delete a todo on /todo/&lt;id&gt; DELETE without Auth Token">
+    </testcase>
+  </testsuite>
+</testsuites>

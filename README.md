@@ -23,7 +23,7 @@ nodejs version v8.10.0
 - Express Application created 建立 Express 物件。（server.js）
 - Application API Endpoints defined 定義應用程式API進入端點。（api/controller/userController.js、api/routes/mainRoutes.js）
 - Schema and Model created for User 以API建立User結構與模型。
-- Controller functions for User Authentication created 建立使用者驗證功能。
+- Controller functions for User Authentication created 建立使用者驗證功能。（api/controller/authController.js）
 - JWT Token signed 使用JWT。
 - API Endpoint and Routes for Login and Register defined 設定須完成身份驗證後方可執行API。
 - User Authentication Controller applied on Application endpoints 完成身份驗證後方可執行應用程式API。
@@ -81,19 +81,18 @@ JWT由以點（.）分隔的字符串形式的三個組件組成。這些組件�
 - Payload（有效負載）
 - Signature（簽名）
 
-**1. Header（標頭）** 一個由Base64編碼的物件，包含兩個屬性：類型聲明和雜湊演算法。
-A Base64 encoded object that consists of two properties: type declaration and the hashing algorithm. The object declaration is seen in the following snippet:
-
+**1. Header（標頭）** 一個由Base64編碼的物件，包含兩個屬性：類型聲明和雜湊演算法。舉例如下：
+A Base64 encoded object that consists of two properties: type declaration and the hashing algorithm.
 ```
 {
     "typ": "JWT”, // will always be JWT
     "alg": "HS256” // any preferred hashing algorithm (HMAC SHA256 is preferred in this case)
 }
 ```
-The result for the above object after encoding - eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+上述編碼結果為：eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
-**2. Payload（有效負載）** JWT物件，視為聲明或宣告，其中保留了有關令牌(Token)的訊息以及要發送的訊息。該物件同時也可包含其他聲明項目。
-A JWT object and is known as a claim, where information about the token with information to be transmitted is held. The object also gives room for multiple claims, and this includes the either of the following:
+**2. Payload（有效負載）** JWT物件，視為聲明或宣告，其中保留了有關令牌(Token)的訊息以及要發送的訊息。該物件同時也可包含其他聲明項目。舉例如下：
+A JWT object and is known as a claim, where information about the token with information to be transmitted is held. The object also gives room for multiple claims.
 ```
 iss: issuer of the token, 
 sub: subject of the token, 
@@ -101,20 +100,20 @@ aud: information about the audience of the token,
 exp: expiration (after the current date/time) in NumericDate value and many more.
 ```
 _Public claim names._ 公開聲明名稱。還有用戶創建或定義的聲明，例如用戶名，信息等。
-
 _Private claim names._ 私人聲明名稱：這些聲明是根據消費者與生產者之間的協議定義的。私人聲明名稱會發生名稱衝突（名稱衝突），因此建議謹慎使用它們。
-
 下列為一個Payload（有效負載）案例，該負載具有兩個註冊的聲明（iss和exp）和兩個公共聲明（作者和公司）。結果片段如下所示：
 ```
 {
-    "iss": "buddy works blog",
+    "iss": "Halau-Management",
     "exp": 2000000,
-    "author": "Paul Oluyege",
-    "company": "Buddy Works"
+    "author": "Verdad Hsu",
+    "company": "kauluokalataiwan"
 }
 ```
 經過base64編碼後，上述物件將構成JWT令牌（Token）的第二部分。得出的結果如下所示：
+```
 eyJpc3MiOiJidWRkeSB3b3JrcyBibG9nIiwiZXhwIjoyMDAwMDAwLCJhdXRob3IiOiJQYXVsIE9sdXllZ2UiLCJjb21wYW55IjoiQnVkZHkgV29ya3MifQ
+```
 
 **3. Signature（簽名）** 由標頭（Header）的雜湊碼，有效負載（Payload）和私鑰組成，格式如下：。
 ```
@@ -123,25 +122,44 @@ Signature = HMACSHA256((base64UrlEncode(header) + "." + base64UrlEncode(payload)
 
 JWT 編碼後的令牌（token）如下：
 ```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJidWRkeSB3b3JrcyBibG9nIiwiZXhwIjoyMDAwMDAwLCJhdXRob3IiOiJQYXVsIE9sdXllZ2UiLCJjb21wYW55IjoiQnVkZHkgV29ya3MifQ.RDDSEubrucmTzyMQ4ofOMD7BSgm7tvItP5sf2-GaIuA
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtYXJ0dmVyZGFkQGdtYWlsLmNvbSIsImZ1bGxOYW1lIjoiVmVyZGFkIEhzdSIsIl9pZCI6IjYwNWQ4Nzk2ODQ3MzQwMWY4YzJhOGFkOCIsImlhdCI6MTYxNzAwNjQ4NX0.TYv0MKkGBaX0Th9ycl1mS13VJPE5kIpT9Tkpq0nnT7Y
 ```
 
-
-
-
+## JWT implementation 實做
 ```
 npm install jsonwebtoken
 npm install bcryptjs
-
 ```
+- add userModel.js
+- add authController.js
+- update server.js
 
-# Unit Testing
+
+# Unit Testing 應用程式測試
+## 安裝測試套件
 ```
 npm install chai
 npm install mocha
 npm install chai-http
 ```
+## 測試實作
+```
+mkdir -p test
+touch /test/test.server.js
+```
+- update mainRoute.js 定義API時取消API身份驗證功能
+- update package.json
+```
+"scripts": {
 
+    "test": "mocha --timeout 10000000000"
 
+},
+```
+
+執行測試
+```
+$ npm test
+```
 
 

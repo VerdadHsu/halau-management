@@ -64,13 +64,9 @@ npm install mongoose express body-parser
 
 ```
 > Express 是一個簡潔而靈活的 node.js Web應用框架, 提供了一系列強大特性幫助你創建各種 Web 應用，和豐富的 HTTP 工具。使用 Express 可以快速地搭建一個完整功能的網站。
-
 > Express 框架核心特性：
-
 > - 可以設置中間件來響應 HTTP 請求。
-
 > - 定義了路由表用於執行不同的 HTTP 請求動作。
-
 > - 可以通過向模板傳遞參數來動態渲染 HTML 頁面。
 
 

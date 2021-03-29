@@ -81,7 +81,7 @@ JWT由以點（.）分隔的字符串形式的三個組件組成。這些組件�
 - Payload（有效負載）
 - Signature（簽名）
 
-**1. Header（標頭）** – 一個由Base64編碼的物件，包含兩個屬性：類型聲明和雜湊演算法。
+**1. Header（標頭）** 一個由Base64編碼的物件，包含兩個屬性：類型聲明和雜湊演算法。
 A Base64 encoded object that consists of two properties: type declaration and the hashing algorithm. The object declaration is seen in the following snippet:
 
 ```
@@ -92,7 +92,7 @@ A Base64 encoded object that consists of two properties: type declaration and th
 ```
 The result for the above object after encoding - eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
 
-**2. Payload（有效負載）** – JWT物件，視為聲明或宣告，其中保留了有關令牌(Token)的訊息以及要發送的訊息。該物件同時也可包含其他聲明項目。
+**2. Payload（有效負載）** JWT物件，視為聲明或宣告，其中保留了有關令牌(Token)的訊息以及要發送的訊息。該物件同時也可包含其他聲明項目。
 A JWT object and is known as a claim, where information about the token with information to be transmitted is held. The object also gives room for multiple claims, and this includes the either of the following:
 ```
 iss: issuer of the token, 
@@ -100,9 +100,9 @@ sub: subject of the token,
 aud: information about the audience of the token, 
 exp: expiration (after the current date/time) in NumericDate value and many more.
 ```
-_Public claim names._公開聲明名稱。還有用戶創建或定義的聲明，例如用戶名，信息等。
+_Public claim names._ 公開聲明名稱。還有用戶創建或定義的聲明，例如用戶名，信息等。
 
-_Private claim names._私人聲明名稱：這些聲明是根據消費者與生產者之間的協議定義的。私人聲明名稱會發生名稱衝突（名稱衝突），因此建議謹慎使用它們。
+_Private claim names._ 私人聲明名稱：這些聲明是根據消費者與生產者之間的協議定義的。私人聲明名稱會發生名稱衝突（名稱衝突），因此建議謹慎使用它們。
 
 下列為一個Payload（有效負載）案例，該負載具有兩個註冊的聲明（iss和exp）和兩個公共聲明（作者和公司）。結果片段如下所示：
 ```
@@ -116,10 +116,7 @@ _Private claim names._私人聲明名稱：這些聲明是根據消費者與生�
 經過base64編碼後，上述物件將構成JWT令牌（Token）的第二部分。得出的結果如下所示：
 eyJpc3MiOiJidWRkeSB3b3JrcyBibG9nIiwiZXhwIjoyMDAwMDAwLCJhdXRob3IiOiJQYXVsIE9sdXllZ2UiLCJjb21wYW55IjoiQnVkZHkgV29ya3MifQ
 
-Signature - made up of a hash of the header, payload and secret in the following format:
-
-
-**3. Signature（簽名）** – 由標頭（Header）的雜湊碼，有效負載（Payload）和私鑰組成，格式如下：。
+**3. Signature（簽名）** 由標頭（Header）的雜湊碼，有效負載（Payload）和私鑰組成，格式如下：。
 ```
 Signature = HMACSHA256((base64UrlEncode(header) + "." + base64UrlEncode(payload)), ‘secret’);
 ```

@@ -58,8 +58,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Import API route
-//var routes = require("./api/routes/userRoutes"); //importing route
-var routes = require("./api/routes/todoRoutes"); // Testing : importing route
+var routes = require("./api/routes/mainRoutes"); //importing route
+//var routes = require("./api/routes/todoRoutes"); // Testing : importing route - without auth
 routes(app);
 
 

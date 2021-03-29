@@ -4,7 +4,7 @@
 module.exports = function (app) {
   var userHandler = require("../controllers/userController");
   var authHandler = require("../controllers/authController");
-  var  todoList = require('../controllers/todoController');
+  var todoList = require("../controllers/todoController");
 
   // --- userHandler Routes ---
   // get and post request for /users endpoints
@@ -19,22 +19,17 @@ module.exports = function (app) {
     .put(userHandler.updateUser)
     .delete(userHandler.deleteUser);
 
-
-
-    // get and post request for /todos endpoints
-    app
+  // get and post request for /todos endpoints
+  app
     .route("/todos")
     .get(todoList.listAllTodos)
-    .post(authHandler.loginRequired,todoList.createNewTodo); // update with login handler
- 
-// put and delete request for /todos endpoints   
-    app
+    .post(authHandler.loginRequired, todoList.createNewTodo); // update with login handler
+
+  // put and delete request for /todos endpoints
+  app
     .route("/todo/:id")
     .put(authHandler.loginRequired, todoList.updateTodo) // update with login handler
     .delete(authHandler.loginRequired, todoList.deleteTodo); // update with login handler
-
-
-
 
   // --- authHandler Routes ---
   // post request for user registration

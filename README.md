@@ -8,10 +8,26 @@ nodejs version v8.10.0
 
 
 > load module
+> 
 > module = require(‘module_name’);
 
 > module.exports
+> 
 > 將javascript裡任何型別的宣告，變成一個模組，供其他的應用程式或模組使用。
+
+
+# outline
+- Cluster created in MongoDB Atlas cloud database.
+- Schema and model created for Todo
+- Database connected to Application
+- Express Application created
+- Application API Endpoints defined
+- Schema and Model created for User
+- Controller functions for User Authentication created
+- JWT Token signed
+- API Endpoint and Routes for Login and Register defined
+- User Authentication Controller applied on To-do Application endpoints
+- JWT Token Verified
 
 
 ## make nodejs project
@@ -90,17 +106,6 @@ npm install mocha
 npm install chai-http
 ```
 
-# outline
-- Cluster created in MongoDB Atlas cloud database.
-- Schema and model created for Todo
-- Database connected to Application
-- Express Application created
-- Application API Endpoints defined
-- Schema and Model created for User
-- Controller functions for User Authentication created
-- JWT Token signed
-- API Endpoint and Routes for Login and Register defined
-- User Authentication Controller applied on To-do Application endpoints
-- JWT Token Verified
+
 
 

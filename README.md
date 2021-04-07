@@ -1,5 +1,19 @@
 # Halau Management
-本專案中我們將從頭開始構建安全的Restful API，然後完成為會員列表應用程序構建安全的RESTful API所需的所有步驟，並可創建、檢索、更新及刪除列表。
+本專案將從頭開始構建安全的Restful API，然後完成為會員列表應用程序構建安全的RESTful API所需的所有步驟，並可創建、檢索、更新及刪除列表。
+使用工具如下:
+* Node.js
+    * mongoose
+    * express
+    * body-parser
+* JWT
+    * jsonwebtoken
+    * bcryptjs
+* MongoDB Atlas
+* Unit Testing
+    * chai
+    * mocha
+    * chai-http
+
 
 ## node version 使用版本
 node version v14.15.3
